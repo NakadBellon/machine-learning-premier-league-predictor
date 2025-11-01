@@ -1,0 +1,44 @@
+name: Basic Code Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run basic tests
+      run: |
+        python test_setup.py
+        
+    - name: Check code formatting with Black
+      run: |
+        pip install black
+        black --check src/ mlops/ app/
+        
+    - name: Check imports with isort
+      run: |
+        pip install isort
+        isort --check-only src/ mlops/ app/
+        
+    - name: Validate Python syntax
+      run: |
+        python -m py_compile src/monitoring/mlflow_setup.py
+        python -m py_compile mlops/workflow/dvc_setup.py
