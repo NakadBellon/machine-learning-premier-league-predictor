@@ -1,0 +1,35 @@
+# Environnement virtuel
+premier_league_env/
+venv/
+.env
+
+# Données
+data/raw/
+data/processed/
+*.csv
+*.parquet
+
+# Modèles
+models/serialized/
+*.pkl
+*.joblib
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# DVC
+.dvc/tmp/
+.dvc/cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc

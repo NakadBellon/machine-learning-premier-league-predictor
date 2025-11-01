@@ -1,0 +1,18 @@
+[project]
+name = "premier-league-predictor"
+version = "0.1.0"
+description = "ML project to predict Premier League winner using time series"
+authors = [
+    {name = "Ton Nom", email = "ton@email.com"},
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
