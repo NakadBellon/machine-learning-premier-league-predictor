@@ -69,7 +69,5 @@ pip install -r requirements.txt
 - Entraînement des modèles
 - Optimisation hyperparamètres
 - Interface de prédiction
-=======
-# machine-learning-premier-league-predictor
-Machine Learning Pipeline for Premier League Match Predictions
->>>>>>> c624cd5e1ead4099352eb8cf063ae2d07c3d7ac2
+
+
