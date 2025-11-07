@@ -1,24 +1,18 @@
-# 🏆 Premier League Predictor
+# Premier League Predictor 🏆
 
-Projet ML pour prédire le vainqueur de la Premier League using séries temporelles.
+Un système de prédiction des matchs de Premier League anglaise utilisant le machine learning.
 
-## 🚀 Installation
+## Objectif
+Prédire les résultats des matchs de Premier League (victoire domicile/extérieur/match nul) basé sur les données historiques et les performances des équipes.
 
-```bash
-# Clone le projet
-git clone <ton-repo>
-cd premier_league_predictor
+## Fonctionnalités
 
-# Crée l'environnement
-python -m venv premier_league_env
-source premier_league_env/bin/activate  # Linux/Mac
-premier_league_env\Scripts\activate    # Windows
+- **Scraping automatique** des données depuis FBref (2019-2026)
+- **Nettoyage et feature engineering** des données
+- **Tracking MLOps** avec MLflow
+- **Modèles de machine learning** pour la prédiction
 
-# Installe les dépendances
-pip install -r requirements.txt
-```
-
-## Structure
+## Structure général
 
 premier_league_predictor/
 ├── data/           # Données
@@ -27,6 +21,32 @@ premier_league_predictor/
 ├── notebooks/      # Jupyter notebooks
 ├── app/            # Application Streamlit
 └── mlops/          # Pipeline MLOps
+
+## Structure du scraping
+
+src/data_scraping/
+├── pipeline.py # Pipeline principal
+├── scraper.py # Scraping FBref
+├── cleaner.py # Nettoyage des données
+├── config.py # Configuration
+└── features.py # Feature engineering
+
+## Installation
+
+```bash
+# Clone le projet
+git clone https://github.com/NakadBellon/machine-learning-premier-league-predictor.git
+cd premier_league_predictor
+
+# Crée l'environnement
+python -m venv premier_league_env
+source premier_league_env/bin/activate  # Linux/Mac
+# OU
+premier_league_env\Scripts\activate  # Windows
+
+# Installe les dépendances
+pip install -r requirements.txt
+```
 
 ## Objectifs
 
@@ -37,3 +57,15 @@ premier_league_predictor/
 - App Streamlit interactive
 - Pipeline MLOps automatisé
 
+## Données
+
+- Période : Saisons 2019-2020 à 2025-2026
+- Matchs : 15,960 matchs historiques
+- Features : Scores, xG, forme des équipes, etc.
+
+## Prochaines étapes
+
+- Feature engineering avancé
+- Entraînement des modèles
+- Optimisation hyperparamètres
+- Interface de prédiction

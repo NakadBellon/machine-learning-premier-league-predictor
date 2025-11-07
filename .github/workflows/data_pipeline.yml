@@ -1,0 +1,40 @@
+# .github/workflows/data_pipeline.yml
+name: Data Pipeline
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Tous les lundis à 6h
+  workflow_dispatch:  # Déclenchement manuel
+
+jobs:
+  run-data-pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install soccerdata tqdm
+        
+    - name: Run data pipeline
+      run: |
+        mkdir -p logs
+        python -m src.data_scraping.main
+        
+    - name: Version data with DVC
+      run: |
+        dvc add data/raw/ data/processed/
+        git add data/raw/.gitignore data/processed/.gitignore
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git commit -m "Auto-update Premier League data [skip ci]" || exit 0
+        git push
+        dvc push
