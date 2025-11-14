@@ -14,6 +14,7 @@ Prédire les résultats des matchs de Premier League (victoire domicile/extérie
 
 ## Structure général
 
+```
 premier_league_predictor/
 ├── data/           # Données
 ├── src/            # Code source
@@ -21,15 +22,18 @@ premier_league_predictor/
 ├── notebooks/      # Jupyter notebooks
 ├── app/            # Application Streamlit
 └── mlops/          # Pipeline MLOps
+```
 
 ## Structure du scraping
 
+```
 src/data_scraping/
 ├── pipeline.py # Pipeline principal
 ├── scraper.py # Scraping FBref
 ├── cleaner.py # Nettoyage des données
 ├── config.py # Configuration
 └── features.py # Feature engineering
+```
 
 ## Installation
 

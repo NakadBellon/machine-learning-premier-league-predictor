@@ -16,19 +16,19 @@ class PremierLeagueScraper:
     
     def get_season_matches(self, season):
         """Récupère tous les matchs d'une saison."""
-        self.logger.info(f"📅 Scraping saison {season}...")
+        self.logger.info(f"Scraping saison {season}...")
         try:
             matches = self.fbref.read_schedule(season)
             matches['season'] = season
-            self.logger.info(f"✅ {len(matches)} matchs trouvés")
+            self.logger.info(f"{len(matches)} matchs trouvés")
             return matches
         except Exception as e:
-            self.logger.error(f"❌ Erreur {season}: {e}")
+            self.logger.error(f"Erreur {season}: {e}")
             return None
     
     def get_all_matches(self):
         """Récupère tous les matchs 2019-2026."""
-        self.logger.info("🚀 Début du scraping Premier League 2019-2026...")
+        self.logger.info(" Début du scraping Premier League 2019-2026...")
         all_matches = []
         
         for season_name, season_code in self.seasons.items():
@@ -38,10 +38,10 @@ class PremierLeagueScraper:
         
         if all_matches:
             df = pd.concat(all_matches, ignore_index=True)
-            self.logger.info(f"🎉 TOTAL: {len(df)} matchs sur {len(self.seasons)} saisons")
-            self.logger.info(f"📊 Shape: {df.shape}")
-            self.logger.info(f"📋 Colonnes: {list(df.columns)}")
+            self.logger.info(f" TOTAL: {len(df)} matchs sur {len(self.seasons)} saisons")
+            self.logger.info(f" Shape: {df.shape}")
+            self.logger.info(f" Colonnes: {list(df.columns)}")
             return df
         
-        self.logger.error("❌ Aucune donnée récupérée")
+        self.logger.error(" Aucune donnée récupérée")
         return None
