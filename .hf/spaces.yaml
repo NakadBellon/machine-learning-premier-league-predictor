@@ -1,0 +1,3 @@
+title: "Premier League Predictor"
+sdk: docker
+app_file: app/complete_dashboard.py
