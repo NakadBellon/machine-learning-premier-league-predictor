@@ -1,3 +1,4 @@
+# 📁 .dockerignore
 .git
 .gitignore
 __pycache__
@@ -13,3 +14,15 @@ venv/
 .dvc/
 mlruns/**/*.trash
 data/**/*.dvc
+*.csv
+*.pkl
+*.joblib
+.ipynb_checkpoints
+.cache
+.pytest_cache
+.coverage
+.tox
+*.egg-info
+.eggs
+dist/
+build/

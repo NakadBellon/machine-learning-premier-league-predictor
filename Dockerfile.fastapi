@@ -1,0 +1,27 @@
+# 📁 Dockerfile.fastapi
+FROM python:3.9-slim
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+COPY app/fastapi_app/ ./app/
+COPY src/ ./src/
+COPY deployment_data/ ./data/
+COPY models/ ./models/
+
+RUN mkdir -p data/raw data/processed mlruns logs
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

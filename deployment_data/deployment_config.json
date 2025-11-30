@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "deployment_date": "2025-11-30T21:30:38.187635",
+  "model_accuracy": 0.6058,
+  "features_used": [
+    "home_xg",
+    "away_xg",
+    "team_form"
+  ],
+  "data_sources": [
+    "FBref"
+  ],
+  "last_training_date": "2024-01-01"
+}

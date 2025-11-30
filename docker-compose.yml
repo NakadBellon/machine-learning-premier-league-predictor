@@ -1,0 +1,45 @@
+# 📁 docker-compose.yml
+version: '3.8'
+
+services:
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./app:/app/app  # Hot reload pour le développement
+      - ./data:/app/data
+    environment:
+      - ENVIRONMENT=development
+      - API_BASE_URL=http://fastapi-app:8000/api/v1
+    depends_on:
+      - fastapi-app
+    restart: unless-stopped
+    networks:
+      - premier-league-network
+
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/fastapi_app:/app/app  # Hot reload
+      - ./data:/app/data
+    environment:
+      - ENVIRONMENT=development
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    networks:
+      - premier-league-network
+
+networks:
+  premier-league-network:
+    driver: bridge
+
+volumes:
+  data_volume:
+    driver: local
